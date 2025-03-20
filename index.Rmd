@@ -100,7 +100,7 @@ This document is intended to be a living document for individual country guidanc
 **Disclaimer:** This document is a guide only; the author holds no responsibility for where information here differs from individual experiences. We encourage anyone interested in submitting to a HTA agency to follow the published guidance and reach out to the individual agencies to confirm acceptance based on your individual circumstance. 
 
 
-This document is to be referenced as: "Hart 2025, Use of R models for HTA submission, https://doi.org/10.5281/zenodo.15056439"
+This document is to be referenced as: Hart R, Use of R models for HTA submission, 2025, https://doi.org/10.5281/zenodo.15056439
 
 The code for this document is hosted on GitHub at: https://github.com/dark-peak-analytics/HTA_acceptance_living_document
 
