@@ -17,13 +17,15 @@ output:
 }
 </style>
 
-```{r, echo=FALSE}
-htmltools::img(src = knitr::image_uri("DPAlogo.jpg"), 
-               alt = 'logo', 
-               style = 'position:absolute; top:0; right:0; padding:10px;',
-               width = "150px",
-               heigth = "150px")
-```
+<p><a href="https://darkpeakanalytics.com/">
+  <img src = "DPAlogo.jpg" 
+       alt = 'logo'
+       style = 'position:absolute; top:0; right:0; padding:10px;'
+       width = '150px'
+       heigth = '150px' >
+</a></p>       
+
+
 
 ```{r, echo=FALSE}
 
