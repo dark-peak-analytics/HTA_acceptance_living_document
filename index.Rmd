@@ -104,7 +104,7 @@ This document is to be referenced as: Hart R, Use of R models for HTA submission
 
 The code for this document is hosted on GitHub at: https://github.com/dark-peak-analytics/HTA_acceptance_living_document
 
-Notice something wrong or missing? Contact us at rhart@darkpeakanalytics.com with more information and we will try to incorporate it"
+Notice something wrong or missing? Contact us at rhart@darkpeakanalytics.com with more information and we will try to incorporate it
 
 
 ```{r include=FALSE}
