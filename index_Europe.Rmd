@@ -1,0 +1,211 @@
+---
+title: "Use of R models for HTA submission: A European summary"
+author: "Rose Hart, Dark Peak Analytics Ltd."
+date: "Last updated: `r format(Sys.Date(), format = '%d %B %Y')`"
+output:
+  rmarkdown::html_document:
+    theme: flatly
+---
+
+<style type="text/css">
+.main-container {
+  max-width: 20000px;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+}
+</style>
+
+<p><a href="https://darkpeakanalytics.com/" target="_blank">
+  <img src = "DPAlogo.jpg" 
+       alt = 'logo'
+       style = 'position:absolute; top:0; right:0; padding:10px;'
+       width = '150px'
+       heigth = '150px' >
+</a></p>       
+
+
+
+```{r, echo=FALSE}
+
+yellowhex <- "#ebc622"
+redhex <- "#bd0000"
+greenhex <- "#5ec22c"
+
+CountryVec <- c(
+  "Australia",
+  "Belgium",
+  "Canada",
+  "Czech Republic",
+  "Denmark",
+  "England",
+  "Finland",
+  "France",
+  "Germany",
+  "Ireland",
+  "Italy",
+  "New Zealand",
+  "Norway",
+  "Poland",
+  "Portugal",
+  "Scotland",
+  #"Spain",
+  "Sweden",
+  "The Netherlands"
+)
+
+```
+
+
+```{r include=FALSE}
+library(fontawesome)
+library(ggplot2)
+library(grid)
+library(rworldmap)
+library(dplyr)
+library(plotly)
+library(gridExtra)
+``` 
+
+
+```{r Map_Europe, echo=FALSE, out.width="100%"}
+worldMap <- getMap()
+
+## Define vector with all European countries: ##
+v.europe <- c("Norway", "Sweden", "Finland", "Denmark", "United Kingdom","Ireland", "Greece",
+              "Belgium", "Netherlands", "France", "Spain", "Portugal", "Luxembourg", "Croatia",
+              "Germany", "Switzerland", "Austria", "Slovenia", "Italy", "Bulgaria", "Romania",
+              "Czech Rep.", "Slovakia", "Hungary", "Poland", "Bosnia Hercegovina", "Serbia",
+              "Ukraine", "Moldova", "Belarus", "Estonia", "Latvia", "Lithuania",
+              "Montenegro", "Albania", "Macedonia","Bosnia and Herz.","Kosovo")
+
+# Amend to split up UK
+v.europe.updated <- v.europe[-which(v.europe=="United Kingdom")]
+v.europe.updated <- c(v.europe.updated,"England","Scotland")
+
+# Colour manual for the 'before'
+colourlist_default <- rep("grey50",length(v.europe.updated))
+names(colourlist_default) <- v.europe.updated
+colourlist_before <- colourlist_default
+
+# These need manually updating when anything changes
+colourlist_before["Belgium"] <- yellowhex
+colourlist_before["Czech Rep."] <- "white"
+colourlist_before["Denmark"] <- redhex
+colourlist_before["England"] <- greenhex
+colourlist_before["Finland"] <- greenhex
+colourlist_before["France"] <- "white"
+colourlist_before["Germany"] <- "white"
+colourlist_before["Ireland"] <- yellowhex
+colourlist_before["Italy"] <- redhex
+colourlist_before["Norway"] <- greenhex
+colourlist_before["Poland"] <- yellowhex
+colourlist_before["Portugal"] <- yellowhex
+colourlist_before["Scotland"] <- "white"
+colourlist_before["Spain"] <- "white"
+colourlist_before["Sweden"] <- "white"
+colourlist_before["Netherlands"] <- greenhex
+
+
+## Select only the index of countries of Europe: ##
+indEU <- which(worldMap$NAME%in%v.europe)
+
+
+## Extract longitude and latitude border's coordinates of countries: ##
+df.europeCoords <- lapply(indEU, function(i){
+  df <- data.frame(worldMap@polygons[[i]]@Polygons[[1]]@coords)
+  df$region = as.character(worldMap$NAME[i])
+  colnames(df) <- list("long", "lat", "region")
+  return(df)
+})
+df.europeCoords <- do.call("rbind", df.europeCoords)
+names(df.europeCoords) <- c("longitude", "latitude", "country")
+
+# Split out the UK
+df.europeCoords.notUK <- df.europeCoords[which(df.europeCoords$country !="United Kingdom"),]
+df.europeCoords.UK <-  df.europeCoords[which(df.europeCoords$country =="United Kingdom"),]
+
+# Seperate Scotland and England
+ScotVec <- c(36:48,1:8)
+df.ScotCoords <- df.europeCoords.UK[ScotVec,]
+df.ScotCoords$country <- "Scotland"
+
+df.EnglandCoords <- df.europeCoords.UK[-ScotVec[2:(length(ScotVec)-1)],]
+df.EnglandCoords$country <- "England"
+
+# rbind it back
+df.europeCoords <- rbind(df.europeCoords.notUK,df.ScotCoords,df.EnglandCoords)
+
+
+## Deletes/Removes borders of PLOT: ##
+ax <- list(
+  title = "",
+  zeroline = FALSE,
+  showline = FALSE,
+  showticklabels = FALSE,
+  showgrid = FALSE
+)
+
+## Plot the map: ##
+p <- ggplot(data = df.europeCoords, aes(x = longitude, y = latitude, group = country,
+                                        fill = country,
+                                        text = paste("<b>", country, '</b>\n')),
+            size = 0.1) +
+  geom_polygon(colour = "black", linewidth = 0.2) +
+  scale_fill_manual(values = colourlist_before) +
+  coord_map(xlim = c(-13, 35),  ylim = c(32, 71)) +
+  theme_classic() +
+  theme(axis.text.x = element_blank(), axis.text.y = element_blank(), axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(), axis.title = element_blank(), legend.position = "none",
+        plot.margin = unit(0 * c(-1.5, -1.5, -1.5, -1.5), "lines"))
+
+## Create plot_ly() object: ##
+EuropePlot_before <- plotly::ggplotly(p, tooltip = "text") %>%
+  layout(xaxis = ax, yaxis = ax)
+
+# Colour manual for the 'after'
+colourlist_after <- colourlist_default
+
+# These need manually updating when anything changes
+colourlist_after["Belgium"] <- yellowhex
+colourlist_after["Czech Rep."] <- greenhex
+colourlist_after["Denmark"] <- redhex
+colourlist_after["England"] <- greenhex
+colourlist_after["Finland"] <- greenhex
+colourlist_after["France"] <- "white"
+colourlist_after["Germany"] <- greenhex
+colourlist_after["Ireland"] <- greenhex
+colourlist_after["Italy"] <- redhex
+colourlist_after["Norway"] <- greenhex
+colourlist_after["Poland"] <- yellowhex
+colourlist_after["Portugal"] <- greenhex
+colourlist_after["Scotland"] <- yellowhex
+colourlist_after["Spain"] <- "white"
+colourlist_after["Sweden"] <- greenhex
+colourlist_after["Netherlands"] <- greenhex
+
+
+## Plot the map: ##
+p <- ggplot(data = df.europeCoords, aes(x = longitude, y = latitude, group = country,
+                                        fill = country,
+                                        text = paste("<b>", country, '</b>\n')),
+            size = 0.1) +
+  geom_polygon(colour = "black", linewidth = 0.2) +
+  scale_fill_manual(values = colourlist_after) +
+  coord_map(xlim = c(-13, 35),  ylim = c(32, 71)) +
+  theme_classic() +
+  ggtitle("Publicly available guidance VS. Publicly available guidance + correspondence") +
+  theme(axis.text.x = element_blank(), axis.text.y = element_blank(), axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(), axis.title = element_blank(), legend.position = "none",
+        plot.margin = unit(0 * c(-1.5, -1.5, -1.5, -1.5), "lines"))
+
+## Create plot_ly() object: ##
+EuropePlot_after <- plotly::ggplotly(p, tooltip = "text") %>%
+  layout(xaxis = ax, yaxis = ax)
+
+subplot(EuropePlot_before,EuropePlot_after)
+
+
+```
+
+
