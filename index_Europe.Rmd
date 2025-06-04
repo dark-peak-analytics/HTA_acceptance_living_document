@@ -32,28 +32,6 @@ yellowhex <- "#ebc622"
 redhex <- "#bd0000"
 greenhex <- "#5ec22c"
 
-CountryVec <- c(
-  "Australia",
-  "Belgium",
-  "Canada",
-  "Czech Republic",
-  "Denmark",
-  "England",
-  "Finland",
-  "France",
-  "Germany",
-  "Ireland",
-  "Italy",
-  "New Zealand",
-  "Norway",
-  "Poland",
-  "Portugal",
-  "Scotland",
-  #"Spain",
-  "Sweden",
-  "The Netherlands"
-)
-
 ```
 
 
@@ -104,6 +82,7 @@ colourlist_before["Portugal"] <- yellowhex
 colourlist_before["Scotland"] <- "white"
 colourlist_before["Spain"] <- "white"
 colourlist_before["Sweden"] <- "white"
+colourlist_before["Switzerland"] <- "white"
 colourlist_before["Netherlands"] <- greenhex
 
 
@@ -182,6 +161,7 @@ colourlist_after["Portugal"] <- greenhex
 colourlist_after["Scotland"] <- yellowhex
 colourlist_after["Spain"] <- "white"
 colourlist_after["Sweden"] <- greenhex
+colourlist_after["Switzerland"] <- greenhex
 colourlist_after["Netherlands"] <- greenhex
 
 

@@ -51,9 +51,9 @@ fig <- plot_ly(
   link = list(
     source = c(0,1,2,2,3,3,3),
     target = c(4,5,6,4,4,6,7),
+    value  = c(5,2,4,3,4,1,2),
     color = c("#a8d192", "#c97171", "#eddc8e", "#a8d192", "#a8d192", "#eddc8e", "#d1d1d1"),
-    hovertemplate = "value: %{value}<extra></extra>",
-    value  = c(5,2,4,3,3,1,2)))
+    hovertemplate = "value: %{value}<extra></extra>"))
 fig <- fig %>% layout(title = "Available guidance from agency website -> Guidance + Correspondance")
 
 fig
