@@ -67,6 +67,7 @@ names(colourlist_default) <- v.europe.updated
 colourlist_before <- colourlist_default
 
 # These need manually updating when anything changes
+colourlist_before["Austria"] <- yellowhex
 colourlist_before["Belgium"] <- yellowhex
 colourlist_before["Czech Rep."] <- "white"
 colourlist_before["Denmark"] <- redhex
@@ -146,6 +147,7 @@ EuropePlot_before <- plotly::ggplotly(p, tooltip = "text") %>%
 colourlist_after <- colourlist_default
 
 # These need manually updating when anything changes
+colourlist_after["Austria"] <- yellowhex
 colourlist_after["Belgium"] <- yellowhex
 colourlist_after["Czech Rep."] <- greenhex
 colourlist_after["Denmark"] <- redhex
