@@ -153,7 +153,7 @@ colourlist_after["Czech Rep."] <- greenhex
 colourlist_after["Denmark"] <- redhex
 colourlist_after["England"] <- greenhex
 colourlist_after["Finland"] <- greenhex
-colourlist_after["France"] <- "white"
+colourlist_after["France"] <- yellowhex
 colourlist_after["Germany"] <- greenhex
 colourlist_after["Ireland"] <- greenhex
 colourlist_after["Italy"] <- redhex
