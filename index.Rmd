@@ -15,6 +15,33 @@ output:
   margin-right: 50px;
   margin-bottom: 50px;
 }
+
+/* Make the Table/Maps tabs stand out */
+.nav-tabs {
+  border-bottom: 3px solid #2C3E50;
+  margin-bottom: 20px;
+}
+.nav-tabs > li > a {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 10px 30px;
+  margin-right: 6px;
+  background: #ecf0f1;
+  color: #2C3E50;
+  border: 1px solid #bdc3c7;
+  border-bottom: none;
+}
+.nav-tabs > li > a:hover {
+  background: #d5dbdb;
+  color: #2C3E50;
+}
+.nav-tabs > li.active > a,
+.nav-tabs > li.active > a:hover,
+.nav-tabs > li.active > a:focus {
+  background: #2C3E50;
+  color: white;
+  border: 1px solid #2C3E50;
+}
 </style>
 
 <p><a href="https://darkpeakanalytics.com/" target="_blank">
@@ -68,52 +95,86 @@ CountryVec <- c(
 ```
 
 
-<style>
-    .HTAtable {
-        width: 100%;
-    }
-    .HTAtable th {
-        background: #d3d3d2;
-        word-wrap: break-word;
-        text-align: center;
-    }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Australia")`) td:nth-child(3) { background: `r yellowhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Austria")`) td:nth-child(3) { background: `r yellowhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Belgium")`) td:nth-child(3) { background: `r yellowhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Belgium")`) td:nth-child(5) { background: `r yellowhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Canada")`) td:nth-child(3) { background: `r yellowhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Canada")`) td:nth-child(5) { background: `r greenhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Czech Republic")`) td:nth-child(5) { background: `r greenhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Denmark")`) td:nth-child(3) { background: `r redhex`;color:white; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Denmark")`) td:nth-child(5) { background: `r redhex`;color:white; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "England")`) td:nth-child(3) { background: `r greenhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "England")`) td:nth-child(5) { background: `r greenhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Finland")`) td:nth-child(3) { background: `r greenhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Finland")`) td:nth-child(5) { background: `r greenhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "France")`)  td:nth-child(5) { background: `r yellowhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Germany")`) td:nth-child(5) { background: `r greenhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Ireland")`) td:nth-child(3) { background: `r yellowhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Ireland")`) td:nth-child(5) { background: `r greenhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Italy")`) td:nth-child(3) { background: `r yellowhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Italy")`) td:nth-child(5) { background: `r yellowhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "New Zealand")`) td:nth-child(3) { background: `r yellowhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Norway")`) td:nth-child(3) { background: `r greenhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Norway")`) td:nth-child(5) { background: `r greenhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Poland")`) td:nth-child(3) { background: `r yellowhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Portugal")`) td:nth-child(3) { background: `r yellowhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Portugal")`) td:nth-child(5) { background: `r greenhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Scotland")`) td:nth-child(5) { background: `r yellowhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Spain")`) td:nth-child(5) { background: `r yellowhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Sweden")`) td:nth-child(5) { background: `r greenhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "Switzerland")`) td:nth-child(5) { background: `r greenhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "The Netherlands")`) td:nth-child(3) { background: `r greenhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "The Netherlands")`) td:nth-child(5) { background: `r greenhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "United States of America")`) td:nth-child(3) { background: `r greenhex`;color:black; }
-    .HTAtable tr:nth-child(`r which(CountryVec == "United States of America")`) td:nth-child(5) { background: `r greenhex`;color:black; }
-    .HTAtable, tr {
-        border: 1px solid #9c9e9b;
-    }
-</style>
+```{r, echo=FALSE}
+
+# Cell colours for the table. These drive both the table and the maps, so
+# update them here when anything changes.
+# Column 3: Available guidance from agency website
+Col3Colours <- c(
+  "Australia" = yellowhex,
+  "Austria" = yellowhex,
+  "Belgium" = yellowhex,
+  "Canada" = yellowhex,
+  "Denmark" = redhex,
+  "England" = greenhex,
+  "Finland" = greenhex,
+  "Ireland" = yellowhex,
+  "Italy" = yellowhex,
+  "New Zealand" = yellowhex,
+  "Norway" = greenhex,
+  "Poland" = yellowhex,
+  "Portugal" = yellowhex,
+  "The Netherlands" = greenhex,
+  "United States of America" = greenhex
+)
+
+# Column 5: Additional guidance from correspondence
+Col5Colours <- c(
+  "Australia" = yellowhex,
+  "Austria" = yellowhex,
+  "Belgium" = yellowhex,
+  "Canada" = greenhex,
+  "Czech Republic" = greenhex,
+  "Denmark" = redhex,
+  "England" = greenhex,
+  "Finland" = greenhex,
+  "France" = yellowhex,
+  "Germany" = greenhex,
+  "Ireland" = greenhex,
+  "Italy" = yellowhex,
+  "New Zealand" = yellowhex,
+  "Norway" = greenhex,
+  "Poland" = greenhex,
+  "Portugal" = greenhex,
+  "Scotland" = yellowhex,
+  "Spain" = yellowhex,
+  "Sweden" = greenhex,
+  "Switzerland" = greenhex,
+  "The Netherlands" = greenhex,
+  "United States of America" = greenhex
+)
+
+stopifnot(all(c(names(Col3Colours), names(Col5Colours)) %in% CountryVec))
+
+```
+
+```{r, echo=FALSE, results='asis'}
+
+CellCSS <- function(colours, column) {
+  sprintf("    .HTAtable tr:nth-child(%d) td:nth-child(%d) { background: %s;color:%s; }",
+          match(names(colours), CountryVec), column, colours,
+          ifelse(colours == redhex, "white", "black"))
+}
+
+cat("<style>",
+    "    .HTAtable {",
+    "        width: 100%;",
+    "    }",
+    "    .HTAtable th {",
+    "        background: #d3d3d2;",
+    "        word-wrap: break-word;",
+    "        text-align: center;",
+    "    }",
+    CellCSS(Col3Colours, 3),
+    CellCSS(Col5Colours, 5),
+    "    .HTAtable, tr {",
+    "        border: 1px solid #9c9e9b;",
+    "    }",
+    "</style>",
+    sep = "
+")
+
+```
 
 
 ---
@@ -153,13 +214,17 @@ library(gridExtra)
 
 <br>
 
+## {.tabset}
+
+### Table
+
 <div class="HTAtable">
 
 
 | Country    | Agency                                  | Available guidance from agency website | Reference | Additional guidance from correspondence | Additional notes |
 |:----------|:---------------------------------------|:--------------------------------------|:-----------|:---------------------------------------|:----------------|
-| <b>Australia</b>  | Pharmaceutical Benefits Advisory Committee (PBAC) | States that TreeAge Pro and Excel 2010 are the only software that can be used without pre-arrangement<br><br> Requirements of submission: <br>• Access to the electronic copy of the evaluation <br> • Ensure that variables can be changed independently<br> • Can produce results within 'reasonable running times'| <a href = "https://pbac.pbs.gov.au/information/printable-version-of-guidelines.html" target="_blank">Link</a> <br>Version 5 (September 2016) | Awaiting reply |   |
-| <b>Austria</b>  | Austrian Institute for Health Technology Assessment (AIHTA) | States that the model should use 'appropriate software' and that this will depend on the model structure. It requests thorough testing by independent reviewers and prefers development to be carried out modularly so that invidivual modules can be tested independently | <a href = "https://aihta.at/uploads/tableTool/UllCmsPage/gallery/methodenhandbuch-aihta1.pdf" target="_blank">Link</a> <br>Version 1 - Section 8.3.2.5 translated using Google translate (March 2012)| Awaiting reply |   |
+| <b>Australia</b>  | Pharmaceutical Benefits Advisory Committee (PBAC) and Medical Services Advisory Committee (MSAC)| PBAC guidance states that TreeAge Pro and Excel 2010 are the only software that can be used without pre-arrangement<br><br> Requirements of submission for both MSAC and PBAC: <br>• Access to the electronic copy of the evaluation <br> • Ensure that variables can be changed independently<br> • Can produce results within 'reasonable running times'| <a href = "https://pbac.pbs.gov.au/information/printable-version-of-guidelines.html" target="_blank">Link</a> <br>PBAC guidance Version 5 (September 2016) <br><br>  <a href = "https://www.msac.gov.au/sites/default/files/2024-10/guidelines-for-preparing-assessments-for-msac.pdf" target="_blank">Link</a> <br>MSAC guidance Version 1 (May 2021)| MSAC confirmed that Excel and TreeAge are encouraged because they meet this full editability requirement and because assessors may not have the capacity to fully and transparently assess models built with other software. It is not to be encouraged if simpler models are robust enough, but they do agree that there would be conditions where other software (including R) would be acceptable. They have not so far received any submissions written in R (October 2026) <br><br> PBAC confirmed that they do not prescribe the use of of a particular software package and applicants may use a range of software tools in developing their HTA analyses and utilisation models, HTA submissions are commonly submitted in Microsoft Office formats, particularly Microsoft Excel. (October 2026) |   |
+| <b>Austria</b>  | Austrian Institute for Health Technology Assessment (AIHTA) |AIHTA does not accept company submission dossiers. Its stakeholder policy says no submission dossier will be accepted, and the methodology and content of an assessment report are the sole responsibility of the authors and are not open to discussion with manufacturers. AIHTA also is not allowed to carry out industry-funded research and does not accept topic proposals from industry. Manufacturers are only informed by e-mail before an assessment starts and may be asked for further product-related information. This covers its assessments of medical procedures, cancer drugs and other technologies.<br><br> Where AIHTA builds its own models, the methods handbook says only that the model should use "appropriate software" depending on the model structure. It asks for thorough testing by independent reviewers and prefers modular development so that each module can be tested on its own (Section 8.3.2.5). | <a href = "https://aihta.at/page/stakeholder-involvierung/en" target="_blank">Link</a> <br>AIHTA stakeholder involvement page (accessed October 2026) <br><br> <a href = "https://aihta.at/uploads/tableTool/UllCmsPage/gallery/methodenhandbuch-aihta1.pdf" target="_blank">Link</a> <br>Version 1 - Section 8.3.2.5 translated using Google translate (March 2012)| Not applicable |   |
 | <b>Belgium</b> |Belgian Health Care Knowledge Centre (KCE)| The guidance states that the intention is to find a balance between transparency and practical feasibility: "Different software packages for building economic models are available (e.g. Excel, DATA/Treeage, R or WinBUGs). While no specific software packages are prohibited, it is important to ensure that the assessors are practically able to validate the model. Therefore, either a generally applied package is used (e.g. Excel) or prior consultation with the assessors about which package can be used or how the model can be delivered to allow for validation is recommended." <br><br> Requirements of submission: <br> •  Routine submission of the model is not required. However, the assessor can always ask for a copy of the model  | <a href = "https://kce.fgov.be/en/publications/all-reports/belgian-guidelines-for-economic-evaluations-and-budget-impact-analyses-third-edition" target="_blank">Link</a> <br> (May 2025) | No submissions in R have yet been made in Belgium (April 2025)| |
 | <b>Canada</b> |Canada's Drug Agency (CDA)| States that the economic model must be programmed in Excel but the sponsor must contact CDA-AMC in advance if considering alternative program software to ensure that it is acceptable and whether additional requirements will apply.<br><br> Requirements of submission: <br> • The model must be able to function in a stand-alone environment that does not require access to a web-based platform. <br> • The sponsor must provide the model in its entirety and be able to fully execute the model based on modifications to parameters of interest <br> • CDA-AMC must be able to vary individual parameters, view the calculations, and run the model to generate results | <a href = "https://www.cda-amc.ca/procedures-reimbursement-reviews" target="_blank">Link</a> <br> (September 2024) |• Not yet received submission fully in R, but have received submissions where specific functionality is programmed in R (uncommon: around 5 instances in last 5 years)<br> • Would accept R, but would expect there to be strong justification<br> • Any submitted code must be clearly annotated and with minimal use of packages that need to be installed from CRAN <br> • Would need to adhere to all specified guidelines (e.g.  requires inclusion of Markov trace, ability to vary individual parameters and have locally executable model) <br>(March 2025)| |
 | <b>Czech Republic</b> |CzechHTA| Software preference not specified | Not available| The Czech authority have received models in R although it is uncommon. They have also developed models internally in R and have based their recent analysis of HPV catch-up vaccination on this platform. <br><br> The key thing that they look for is good documentation, especially surrounding the localisation of inputs and model structure (March 2025)| |
@@ -169,20 +234,130 @@ library(gridExtra)
 | <b>France</b> |Haute Autorité de Santé (HAS)| Software preference not specified | <a href = "https://www.has-sante.fr/upload/docs/application/pdf/2014-03/pricing_reimbursement_of_drugs_and_hta_policies_in_france.pdf" target="_blank">Link</a> <br> (March 2014) | HAS confirmed that economic models relating to medicines and medical devices submitted to the HAS should be programmed in Excel. However, there are exceptions where programming using other software (including R) may be considered in certain specific cases, such as the economic evaluation of a vaccine based on a dynamic transmission model. <br><br> The specific interest in using other software must be argued by the manufacturer sufficiently in advance of submitting the file to allow the HAS to specify the terms of acceptance of the software. (July 2025)| |
 | <b>Germany</b> |Institute for Quality and efficiency in Health Care (IQWiG)| Software preference not specified in English General methods guidance| <a href = "https://www.iqwig.de/en/about-us/methods/methods-paper/" target="_blank">Link</a> <br>Version 7 (September 2023) | IQWiG have stated that R is a recognized program and models developed with it will be accepted. They have confirmed that they have not yet received any models in R and that they have no current guidelines on how a model in R would need to be developed for submission. (February 2025)| |
 | <b>Ireland</b> |National Centre for Pharmacoeconomics (NCPE)| States that Microsoft Excel 2021 (or earlier versions) is the preferred software for NCPE submissions.  Contact the NCPE in advance of submission if alternative software packages are to be considered for submission <br><br>Requirements of submission: <br> •  A Technical Specification Document is required to be submitted alongside the model for how users should use and adapt the model <br>  • The model must be fully executable <br>  • Specifications of outputs are detailed in guidance and would need to be adhered to regardless of software used | <a href = "https://www.ncpe.ie/submission-process/submission-templates/format-of-full-submissions/" target="_blank">Link</a> <br>Version 3.1 (March 2023) | The NCPE Will accept R with prior notification. No submissions have been made in R to date. <br><br>All code would need to be provided. There is currently no guidance on preferred packages or code guidelines. (March 2025) | |
-| <b>Italy</b> |Italian Medicines Agency (AIFA)| “The data and models used must be provided in Excel or TreeAge format, with editable key parameters, to allow the relevant AIFA offices to perform the necessary checks for the Scientific and Economic Committee's investigations. <br><br>On a trial basis, it is possible to submit the model generated in R, in addition to the standard formats.” (translated)  | <a href = "https://www.aifa.gov.it/documents/20142/3214492/Linee_guida_dossier_domanda_rimborsabilita_vers-2-2025.pdf" target="_blank">Link</a> <br>(December 2025) | Awaiting reply | |
-|<b>New Zealand</b> |PHARMAC| PHARMAC’s preferred software packages are TreeAge and Microsoft Excel. Models provided in other software packages will not be assessed unless by prior agreement <br><br> Requirements of submission: <br> • The model must be stand-alone, where PHARMAC can access all model materials for review and amend any relevant inputs <br> • Economic models should not be unnecessarily complex, and should always be transparent, well described and reproducible | <a href = "https://www.pharmac.govt.nz/medicine-funding-and-supply/the-funding-process/policies-manuals-and-processes/economic-analysis/prescription-for-pharmacoeconomic-analysis-methods-for-cost-utility-analysis/2-health-economic-analysis-at-pharmac" target="_blank">Link</a> <br>(accessed March 2025)| Awaiting reply | |
+| <b>Italy</b> |Italian Medicines Agency (AIFA)| “The data and models used must be provided in Excel or TreeAge format, with editable key parameters, to allow the relevant AIFA offices to perform the necessary checks for the Scientific and Economic Committee's investigations. <br><br>On a trial basis, it is possible to submit the model generated in R, in addition to the standard formats.” (translated)  | <a href = "https://www.aifa.gov.it/documents/20142/3214492/Linee_guida_dossier_domanda_rimborsabilita_vers-2-2025.pdf" target="_blank">Link</a> <br>(December 2025) |  Economic models can be in Excel (preferred) or TreeAge with the main parameters modifiable. Experimentally, it is now possible to submit also models in R. No R submissions have yet been received (January 2026)| |
+| <b>New Zealand</b> |PHARMAC| PHARMAC’s preferred software packages are TreeAge and Microsoft Excel. Models provided in other software packages will not be assessed unless by prior agreement <br><br> Requirements of submission: <br> • The model must be stand-alone, where PHARMAC can access all model materials for review and amend any relevant inputs <br> • Economic models should not be unnecessarily complex, and should always be transparent, well described and reproducible | <a href = "https://www.pharmac.govt.nz/medicine-funding-and-supply/the-funding-process/policies-manuals-and-processes/economic-analysis/prescription-for-pharmacoeconomic-analysis-methods-for-cost-utility-analysis/2-health-economic-analysis-at-pharmac" target="_blank">Link</a> <br>(accessed March 2025)| Confirmed that the details in the public materials are correct <br><br> Further confrmed that they have worked on models developed in R, but that are uncommon and require prior agreement (October 2026) | |
 | <b>Norway</b> |Norwegian Medicines Agency (NoMA)| States that normally it would be useful if the model is designed using Excel, but other alternatives can also be acceptable such as, TreeAge and R. <br><br>Requirements of submission<br>• NoMA must be able to change all relevant variables and parameters in the model <br> • The model must not be locked, time limited, password-protected unless the password is made available, or have any hidden elements that are not described or cannot easily be changed. <br> • The model must be fully executable and not in any non-transparent programmes and/or programming languages | <a href = "https://www.dmp.no/globalassets/documents/english/public-funding-and-pricing/documentation-for-sta/guidelines-20.05.2020.pdf" target="_blank">Link</a> <br> (May 2020) | Awaiting reply on additional information request | |
-| <b>Poland</b> |Agency for Health Technology Assessment and Tariff System (AOTM)| “Except for justified situations, the models should be developed using commonly available tools - Software like MS Excel, TreeAge is often used.” (translated) | <a href = "https://www.aotm.gov.pl/en/guidelines/" target="_blank">Link</a> <br> Version 3 (August 2016) | Awaiting reply | |
+| <b>Poland</b> |Agency for Health Technology Assessment and Tariff System (AOTM)| “Except for justified situations, the models should be developed using commonly available tools - Software like MS Excel, TreeAge is often used.” (translated) | <a href = "https://www.aotm.gov.pl/en/guidelines/" target="_blank">Link</a> <br> Version 3 (August 2016) |  there are no restrictions on the software that can be used to develop an HTA model. Models developed in R can therefore be accepted, provided that we are able to verify the model and reproduce all calculations. We do not restrict the use of R to specific types of models or disease areas. The key consideration is whether the submitted model can be fully verified and its calculations reproduced. <br><br> Their practical experience with R models is limited. Over the past year, they have received only two R-based models, both submitted by the same company in related cases. Almost all models submitted to us are developed in Excel, and this is therefore the software our analysts have the most experience with (October 2026).| |
 | <b>Portugal</b> |Health Technology Assessment Committee (Infarmed)| The guidance states that a model software needs to be appropriate for the cost effectiveness model <br><br>Requirements of submission<br>• No specific guidance on model deployment <br>• There is to be a specific focus on drivers and outcomes of paramenter uncertainty over time| <a href = "https://www.infarmed.pt/web/infarmed/entidades/medicamentos-uso-humano/avaliacao-tecnologias-saude/avaliacao-terapeutica-e-economica2018/-i-guidelines-/i-" target="_blank">Link</a> <br> Version 1 (December 2019) | Infarmed have confirmed that they will accept submissions in R code. However noted that specific particularities of the economic model may need to be replicated in Excel if the methodology is unclear. <br><br> There is no current guidance on specific packages or coding structure. (March 2025)| |
 | <b>Scotland</b> |Scottish Medicines Consortium (SMC)| Software preference not specified <br><br> Requires an executable electronic copy of the economic model with the submission, with full access to the programming code</b>| <a href = "https://scottishmedicines.org.uk/making-a-submission/" target="_blank">Link</a> <br> Guidance on NPAF (November 2024) | SMC have not accepted, nor had the request to accept any models in R. There is concern that they would not be resources to make all the required checks within their very rapid assessment timelines. <br><br> They have confirmed that their ability to accept would depend on the specifics of the case and the rationale for using R would need to be considered before deciding whether it was appropriate <br><br>There is no current guidance on specific packages or coding structure. (March 2025) | |
 | <b>Spain</b> |Spanish Agency of Medicines and Medical Devices (AEMPS)|Software preference not specified | <a href = "https://www.sanidad.gob.es/areas/farmacia/comitesAdscritos/prestacionFarmaceutica/docs/20240227_CAPF_Guia_EE_definitiva.pdf" target="_blank">Link</a> <br> (March 2023) | Excel files are most common for submission, but there have been a few cases where R has been shared with the Ministry of Health. It is advised that the model structure and scope is developed prior to discussion of how the economic model is to be presented. (December 2025) | |
 | <b>Sweden</b> |Dental and Pharmaceutical Benefits Agency (TLV)| Software preference not specified| <a href = "https://www.tlv.se/lakemedelsforetag/halsoekonomiska-bedomningar-och-rapporter-kliniklakemedel.html" target="_blank">Link</a> <br> (February 2025) | The TLV requirement for models is that they are in electronic form - they confirmed R would therefore be accepted. They stated that the model must be fully executable and completely available to review the code and amend the inputs. <br><br>There is no current guidance on specific packages or coding structure. (March 2025)| |
 | <b>Switzerland</b> |Federal Office of Public Health (FOPH)| Model not specifically required for when an application for reimbursement is made. Software preference not specified| <a href = "https://www.bag.admin.ch/bag/de/home/versicherungen/krankenversicherung/krankenversicherung-bezeichnung-der-leistungen/antragsprozesse/AntragsprozessArzneimittel.html" target="_blank">Link</a> <br> (January 2025) | It was confirmed that if an applicant wishes to submit a model or if a model is asked for by FOPH, then Excel format is preferred but if the model is too complex for Excel and there is justification for the use of R then models in R will be accepted. <br><br>There is no current guidance on specific packages or coding structure. (May 2025)| |
-|<b>The Netherlands</b> |National Health Care Institute (ZiN)| ZIN has provided a guideline specifically for the building of models in R <br><br>Details of R model submission: <br> •  CE-models in R are required to include at least all functionalities that would otherwise be included in Excel (including the potential for end-to-end functionality with necessary data)<br>• A recommended folder structure and code structure is provided<br> • The code needs to be able to function stand-alone <br> • Coding conventions and commenting guidance is described <br> • ZIN requires the model to only use CRAN packages that are listed in the guidance <br> • Unit testing is required | <a href = "https://english.zorginstituutnederland.nl/publications/publications/2022/12/15/guideline-for-building-cost-effectiveness-models-in-r" target="_blank">Link</a> <br> (December 2022) | Awaiting reply on additional information request| |
-|<b>United States of America</b> |Institute for Clinical and Economic Review (ICER)|Guidance on the reference model is agnostic to decision problem, but the software type and version needs to be clearly stated | <a href = "https://icer.org/wp-content/uploads/2024/02/Reference-Case-4.3.25.pdf" target="_blank">Link</a> <br> (September 2024) |ICER commented that, as they are a not-profit organisation with no government mandate, they cannot rely on manufacturers to submit anything to them and any engagement is voluntary. Because of this, they build de novo models themselves or in collaboration with academic groups <br><br> ICER additionally noted that nearly all their models were built in Excel because of their ICER Analytics platform, which is a subscription-only service that allows and users to view and interact with the models. The platform is currently not flexible to use R, so any R model would not currently be able to be shared on this platform - it is hoped that this will be updated in the future (May 2025)| |
+| <b>The Netherlands</b> |National Health Care Institute (ZiN)| ZIN has provided a guideline specifically for the building of models in R <br><br>Details of R model submission: <br> •  CE-models in R are required to include at least all functionalities that would otherwise be included in Excel (including the potential for end-to-end functionality with necessary data)<br>• A recommended folder structure and code structure is provided<br> • The code needs to be able to function stand-alone <br> • Coding conventions and commenting guidance is described <br> • ZIN requires the model to only use CRAN packages that are listed in the guidance <br> • Unit testing is required | <a href = "https://english.zorginstituutnederland.nl/publications/publications/2022/12/15/guideline-for-building-cost-effectiveness-models-in-r" target="_blank">Link</a> <br> (December 2022) | Confirmed that guidelines were up-to-date. They have received one R submission (October 2026)| |
+| <b>United States of America</b> |Institute for Clinical and Economic Review (ICER)|Guidance on the reference model is agnostic to decision problem, but the software type and version needs to be clearly stated | <a href = "https://icer.org/wp-content/uploads/2024/02/Reference-Case-4.3.25.pdf" target="_blank">Link</a> <br> (September 2024) |ICER commented that, as they are a not-profit organisation with no government mandate, they cannot rely on manufacturers to submit anything to them and any engagement is voluntary. Because of this, they build de novo models themselves or in collaboration with academic groups <br><br> ICER additionally noted that nearly all their models were built in Excel because of their ICER Analytics platform, which is a subscription-only service that allows and users to view and interact with the models. The platform is currently not flexible to use R, so any R model would not currently be able to be shared on this platform - it is hoped that this will be updated in the future (May 2025)| |
 
 
 </div>
 
+### Maps
 
+Each country is coloured by the additional guidance from correspondence (column 5 of the table). Where there is no colour in column 5, the available guidance from the agency website (column 3) is used instead. Countries shown in white are in the table but have no colour in either column; countries shown in grey are not included in the table.
 
+```{r Maps, echo=FALSE, out.width="100%"}
+worldMap <- getMap()
+
+# Names used in the table that differ from the names in rworldmap
+MapNames <- c("Czech Republic" = "Czech Rep.",
+              "The Netherlands" = "Netherlands",
+              "United States of America" = "United States")
+
+# Map colour: column 5 if coloured, otherwise column 3, otherwise white
+MapColours <- sapply(CountryVec, function(country) {
+  if (country %in% names(Col5Colours)) return(Col5Colours[[country]])
+  if (country %in% names(Col3Colours)) return(Col3Colours[[country]])
+  "white"
+})
+names(MapColours) <- ifelse(CountryVec %in% names(MapNames), MapNames[CountryVec], CountryVec)
+
+# Northern Ireland officially adopts positive NICE guidance, so follows England
+MapColours["Northern Ireland"] <- MapColours[["England"]]
+
+MapStatus <- c("Accepted", "Not accepted", "May be accepted", "No guidance specified")
+names(MapStatus) <- c(greenhex, redhex, yellowhex, "white")
+
+## Extract longitude and latitude coordinates of every polygon of each country: ##
+GetCoords <- function(countries) {
+  ind <- which(worldMap$NAME %in% countries)
+  do.call("rbind", lapply(ind, function(i) {
+    polys <- worldMap@polygons[[i]]@Polygons
+    do.call("rbind", lapply(seq_along(polys), function(j) {
+      df <- data.frame(polys[[j]]@coords)
+      names(df) <- c("longitude", "latitude")
+      df$country <- as.character(worldMap$NAME[i])
+      df$polygon <- paste(df$country, j)
+      df
+    }))
+  }))
+}
+
+## Split the UK mainland into England and Scotland, and label Northern Ireland: ##
+SplitUK <- function(coords) {
+  coords$country[coords$polygon == "United Kingdom 2"] <- "Northern Ireland"
+  UK <- coords[coords$polygon == "United Kingdom 1", ]
+  ScotVec <- c(36:48, 1:8)
+  Scot <- UK[ScotVec, ]
+  Scot$country <- "Scotland"
+  Scot$polygon <- "Scotland"
+  England <- UK[-ScotVec[2:(length(ScotVec) - 1)], ]
+  England$country <- "England"
+  England$polygon <- "England"
+  rbind(coords[coords$polygon != "United Kingdom 1", ], Scot, England)
+}
+
+## Deletes/Removes borders of PLOT: ##
+ax <- list(
+  title = "",
+  zeroline = FALSE,
+  showline = FALSE,
+  showticklabels = FALSE,
+  showgrid = FALSE
+)
+
+PlotRegion <- function(coords, xlim, ylim, title) {
+  coords$fill <- ifelse(coords$country %in% names(MapColours),
+                        MapColours[coords$country], "grey50")
+  coords$status <- ifelse(coords$country %in% names(MapColours),
+                          MapStatus[coords$fill], "Not included")
+  p <- ggplot(data = coords, aes(x = longitude, y = latitude, group = polygon,
+                                 fill = fill,
+                                 text = paste0("<b>", country, "</b>
+", status))) +
+    geom_polygon(colour = "black", linewidth = 0.2) +
+    scale_fill_identity() +
+    coord_quickmap(xlim = xlim, ylim = ylim) +
+    theme_classic() +
+    ggtitle(title) +
+    theme(axis.text.x = element_blank(), axis.text.y = element_blank(), axis.ticks.x = element_blank(),
+          axis.ticks.y = element_blank(), axis.title = element_blank(), axis.line = element_blank(),
+          legend.position = "none")
+  widget <- plotly::ggplotly(p, tooltip = "text") %>%
+    layout(xaxis = ax, yaxis = ax)
+  # Fill the grid cell rather than using knitr's fixed figure width
+  widget$width <- "100%"
+  widget
+}
+
+## Define vector with all European countries: ##
+v.europe <- c("Norway", "Sweden", "Finland", "Denmark", "United Kingdom","Ireland", "Greece",
+              "Belgium", "Netherlands", "France", "Spain", "Portugal", "Luxembourg", "Croatia",
+              "Germany", "Switzerland", "Austria", "Slovenia", "Italy", "Bulgaria", "Romania",
+              "Czech Rep.", "Slovakia", "Hungary", "Poland", "Bosnia Hercegovina", "Serbia",
+              "Ukraine", "Moldova", "Belarus", "Estonia", "Latvia", "Lithuania",
+              "Montenegro", "Albania", "Macedonia","Bosnia and Herz.","Kosovo")
+
+v.northamerica <- c("Canada", "United States", "Mexico", "Greenland", "Guatemala", "Belize",
+                    "Honduras", "El Salvador", "Nicaragua", "Costa Rica", "Panama", "Cuba",
+                    "Bahamas", "Haiti", "Dominican Rep.", "Jamaica", "Puerto Rico")
+
+v.australasia <- c("Australia", "New Zealand", "Papua New Guinea", "Indonesia", "East Timor",
+                   "Solomon Is.", "Vanuatu", "New Caledonia", "Fiji")
+
+# Lay the maps out in a grid, 3 per row
+htmltools::div(
+  style = "display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px;",
+  PlotRegion(SplitUK(GetCoords(v.europe)), xlim = c(-13, 35), ylim = c(34, 71), title = "Europe"),
+  PlotRegion(GetCoords(v.northamerica), xlim = c(-170, -50), ylim = c(15, 75), title = "North America"),
+  PlotRegion(GetCoords(v.australasia), xlim = c(110, 180), ylim = c(-48, -8), title = "Australasia")
+)
+
+```
